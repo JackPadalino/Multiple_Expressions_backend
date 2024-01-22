@@ -161,3 +161,7 @@ cython_debug/
 
 # audio file extensions
 *.mp3
+
+# media files
+media/profile_photos
+# media/track_photos
