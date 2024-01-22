@@ -164,4 +164,4 @@ cython_debug/
 
 # media files
 media/profile_photos
-# media/track_photos
+media/track_photos
