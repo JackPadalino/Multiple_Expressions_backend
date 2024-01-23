@@ -3,7 +3,15 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 
 class Tag(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    TAG_CHOICES = (
+        ("Techno", "Techno"),
+        ("Hardgroove", "Hardgroove"),
+        ("Disco", "Disco"),
+        ("Nu-Disco", "Nu-Disco"),
+        ("Funk", "Funk"),
+        ("House", "House"),
+    )
+    title = models.CharField(max_length=255, choices=TAG_CHOICES, unique=True)
 
     def __str__(self):
         return self.title
