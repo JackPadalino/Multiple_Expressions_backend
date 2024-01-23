@@ -18,7 +18,7 @@ class Tag(models.Model):
 
 class Track(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(User,related_name='tracks')
     file = models.FileField(upload_to='tracks/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])],blank=False)
     track_photo = models.ImageField(
         default='track_photos/default.jpeg',
@@ -35,7 +35,7 @@ class Track(models.Model):
 
 class Video(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(User,related_name='videos')
     file = models.FileField(
         upload_to='videos/',
         validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm', 'avi', 'mov'])],
