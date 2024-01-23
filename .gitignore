@@ -159,9 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# audio file extensions
-*.mp3
-
 # media files
-media/profile_photos
-media/track_photos
+media/profile_photos/*
+media/track_photos/*
+media/tracks/*
+media/videos/*
