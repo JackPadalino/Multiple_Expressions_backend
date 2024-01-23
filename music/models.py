@@ -19,7 +19,7 @@ class Tag(models.Model):
 class Track(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
     users = models.ManyToManyField(User)
-    file = models.FileField(upload_to='uploads/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])],blank=False)
+    file = models.FileField(upload_to='tracks/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])],blank=False)
     track_photo = models.ImageField(
         default='track_photos/default.jpeg',
         upload_to='track_photos/',
