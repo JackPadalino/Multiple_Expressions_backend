@@ -58,6 +58,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    # 'https://django-music-frontend.onrender.com'
+]
+
 ROOT_URLCONF = 'multiple_expressions_backend.urls'
 
 TEMPLATES = [
