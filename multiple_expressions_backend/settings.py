@@ -31,7 +31,11 @@ DEBUG = os.environ.get('USE_DEBUG')
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD
 # setting for deploying to Render
+=======
+# setting from Render hosting service
+>>>>>>> 7f9c5512ba46598b4bfc056970e1ebc93f8b4bea
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
