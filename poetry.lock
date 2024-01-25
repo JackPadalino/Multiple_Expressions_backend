@@ -160,6 +160,19 @@ Django = ">=3.2"
 typing-extensions = ">=3.10.0.0"
 
 [[package]]
+name = "dj-static"
+version = "0.0.6"
+description = "Serve production static files with Django."
+optional = false
+python-versions = "*"
+files = [
+    {file = "dj-static-0.0.6.tar.gz", hash = "sha256:032ec1c532617922e6e3e956d504a6fb1acce4fc1c7c94612d0fda21828ce8ef"},
+]
+
+[package.dependencies]
+static3 = "*"
+
+[[package]]
 name = "django"
 version = "5.0.1"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -524,6 +537,30 @@ doc = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
+name = "static-ranges"
+version = "0.2.0"
+description = "WSGI middleware for handling HTTP byte-ranges"
+optional = false
+python-versions = "*"
+files = [
+    {file = "static-ranges-0.2.0.tar.gz", hash = "sha256:c9eb86adfc27d1aefa6619cff7c8d5043937873c08eb86073cd822d4e32cae86"},
+]
+
+[[package]]
+name = "static3"
+version = "0.7.0"
+description = "A really simple WSGI way to serve static (or mixed) content."
+optional = false
+python-versions = "*"
+files = [
+    {file = "static3-0.7.0.tar.gz", hash = "sha256:674641c64bc75507af2eb20bef7e7e3593dca993dec6674be108fa15b42f47c8"},
+]
+
+[package.extras]
+genshimagic = ["Genshi"]
+kidmagic = ["kid"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.9.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -582,4 +619,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "697f83c1af06f55544fa43a56a6ef4d956a3ef92d0c8b6bbbd3823d9d56e74b5"
+content-hash = "97125c152d39c08b9e7955ccb32277db551ee7a3f25679176857565d805dde7c"
