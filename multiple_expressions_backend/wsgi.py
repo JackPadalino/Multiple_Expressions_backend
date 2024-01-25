@@ -12,8 +12,8 @@ from django.core.wsgi import get_wsgi_application
 from static_ranges import Ranges # *
 from dj_static import Cling, MediaCling # *
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'multiple_expressions_backend.settings')
-application = Ranges(Cling(MediaCling(get_wsgi_application()))) # *
-# application = get_wsgi_application()
+# application = Ranges(Cling(MediaCling(get_wsgi_application()))) # *
+application = get_wsgi_application()
 
 # * New setting to allow for partial requests (video looping and weeking)
 # Followed this post: https://snehaveerakumar.medium.com/upload-videos-with-proper-seekbar-in-django-21039b1fd87
