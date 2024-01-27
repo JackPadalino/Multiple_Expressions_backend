@@ -41,6 +41,11 @@ class Video(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm', 'avi', 'mov'])],
         blank=False
     )
+    video_photo = models.ImageField(
+        default='video_photos/default.jpeg',
+        upload_to='video_photos/',
+        validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]
+    )
     tags = models.ManyToManyField(Tag)
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
 

@@ -29,4 +29,4 @@ class VideoSerializer(ModelSerializer):
     users = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Video
-        fields = ['id','title','file','tags','upload_date','users']
+        fields = ['id','title','file','video_photo','tags','upload_date','users']
