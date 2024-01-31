@@ -16,9 +16,17 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
+class Artist(models.Model):
+    name = models.CharField(max_length=255, unique=True, blank=False)
+    profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default.jpeg')
+    bio = models.TextField(default='')
+
+    def __str__(self):
+        return self.name
+
 class Track(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
-    users = models.ManyToManyField(User,related_name='tracks')
+    artists = models.ManyToManyField(Artist,related_name='tracks')
     file = models.FileField(upload_to='tracks/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])],blank=False)
     track_photo = models.ImageField(
         default='track_photos/default.jpeg',
@@ -30,12 +38,12 @@ class Track(models.Model):
 
     def __str__(self):
         tags_str = ', '.join(tag.title for tag in self.tags.all())
-        users_str = ', '.join(user.username for user in self.users.all())
-        return f"{self.title} (Tags: {tags_str}, Users: {users_str})"
+        artists_str = ', '.join(artist.name for artist in self.artists.all())
+        return f"{self.title} (Tags: {tags_str}, Users: {artists_str})"
 
 class Video(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
-    users = models.ManyToManyField(User,related_name='videos')
+    artists = models.ManyToManyField(Artist,related_name='videos')
     file = models.FileField(
         upload_to='videos/',
         validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm', 'avi', 'mov'])],
@@ -51,5 +59,5 @@ class Video(models.Model):
 
     def __str__(self):
         tags_str = ', '.join(tag.title for tag in self.tags.all())
-        users_str = ', '.join(user.username for user in self.users.all())
-        return f"{self.title} (Tags: {tags_str}, Users: {users_str})"
+        artists_str = ', '.join(artist.name for artist in self.artists.all())
+        return f"{self.title} (Tags: {tags_str}, Users: {artists_str})"

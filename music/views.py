@@ -19,21 +19,37 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .serializers import (
+    TagSerializer,
+    ArtistSerializer,
     TrackSerializer,
-    VideoSerializer
+    VideoSerializer,
+    TrackTagsArtistsSerializer,
+    VideoTagsArtistsSerializer,
+    ArtistTracksVideosSerializer
     )
 
-from django.contrib.auth.models import User
-from .models import (Tag,Track,Video)
+from .models import (Tag,Artist,Track,Video)
+
+class AllArtistsAPIView(APIView):
+    def get(self,request,format=None):
+        artists = Artist.objects.all()
+        serializer = ArtistTracksVideosSerializer(artists, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class SingleArtistAPIView(APIView):
+    def get(self,request,pk,format=None):
+        artist = Artist.objects.get(pk=pk)
+        serializer = ArtistTracksVideosSerializer(artist)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class AllTracksAPIView(APIView):
     def get(self,request,format=None):
         tracks = Track.objects.all()
-        serializer = TrackSerializer(tracks, many=True)
+        serializer = TrackTagsArtistsSerializer(tracks, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        serializer = TrackSerializer(data=request.data)
+        serializer = TrackTagsArtistsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -42,11 +58,11 @@ class AllTracksAPIView(APIView):
 class AllVideosAPIView(APIView):
     def get(self,request,format=None):
         videos = Video.objects.all()
-        serializer = VideoSerializer(videos, many=True)
+        serializer = VideoTagsArtistsSerializer(videos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        serializer = VideoSerializer(data=request.data)
+        serializer = VideoTagsArtistsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -55,11 +71,11 @@ class AllVideosAPIView(APIView):
 class SingleTrackAPIView(APIView):
     def get(self,request,pk,format=None):
         track = Track.objects.get(pk=pk)
-        serializer = TrackSerializer(track)
+        serializer = TrackTagsArtistsSerializer(track)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class SingleVideoAPIView(APIView):
     def get(self,request,pk,format=None):
         video = Video.objects.get(pk=pk)
-        serializer = VideoSerializer(video)
+        serializer = VideoTagsArtistsSerializer(video)
         return Response(serializer.data, status=status.HTTP_200_OK)
