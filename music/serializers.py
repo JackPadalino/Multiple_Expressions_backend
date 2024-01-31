@@ -1,7 +1,5 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-
-from users.serializers import TrackSerializer
 from .models import Tag,Artist,Track,Video
 
 class TagSerializer(ModelSerializer):
