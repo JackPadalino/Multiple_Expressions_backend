@@ -6,15 +6,7 @@ from django.db.models.signals import post_delete
 import boto3 
 
 class Tag(models.Model):
-    TAG_CHOICES = (
-        ("Techno", "Techno"),
-        ("Hardgroove", "Hardgroove"),
-        ("Disco", "Disco"),
-        ("Nu-Disco", "Nu-Disco"),
-        ("Funk", "Funk"),
-        ("House", "House"),
-    )
-    title = models.CharField(max_length=255, choices=TAG_CHOICES, unique=True)
+    title = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.title
@@ -37,7 +29,7 @@ class Track(models.Model):
         upload_to='track_photos/',
         validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]
     )
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag,default="Genre")
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
 
     def __str__(self):
@@ -59,7 +51,7 @@ class Video(models.Model):
         upload_to='video_photos/',
         validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]
     )
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag,default="Genre")
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
 
     def __str__(self):
