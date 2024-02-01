@@ -14,7 +14,7 @@ class Tag(models.Model):
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
     profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default.jpeg')
-    bio = models.TextField(null=True)
+    bio = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Artist(models.Model):
 class Track(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
     artists = models.ManyToManyField(Artist,related_name='tracks')
-    description = models.TextField(null=True)
+    description = models.TextField(null=True,blank=True)
     file = models.FileField(upload_to='tracks/', validators=[FileExtensionValidator(allowed_extensions=['mp3'])],blank=False)
     track_photo = models.ImageField(
         default='track_photos/default.jpeg',
@@ -40,7 +40,7 @@ class Track(models.Model):
 class Video(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
     artists = models.ManyToManyField(Artist,related_name='videos')
-    description = models.TextField(null=True)
+    description = models.TextField(null=True,blank=True)
     file = models.FileField(
         upload_to='videos/',
         validators=[FileExtensionValidator(allowed_extensions=['mp4', 'webm', 'avi', 'mov'])],
