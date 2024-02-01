@@ -44,7 +44,7 @@ class SingleArtistAPIView(APIView):
 
 class AllTracksAPIView(APIView):
     def get(self,request,format=None):
-        tracks = Track.objects.all()
+        tracks = Track.objects.all().order_by('-upload_date')
         serializer = TrackTagsArtistsSerializer(tracks, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -57,7 +57,7 @@ class AllTracksAPIView(APIView):
 
 class AllVideosAPIView(APIView):
     def get(self,request,format=None):
-        videos = Video.objects.all()
+        videos = Video.objects.all().order_by('-upload_date')
         serializer = VideoTagsArtistsSerializer(videos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
