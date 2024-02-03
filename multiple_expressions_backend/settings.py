@@ -39,6 +39,8 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'storages',
     'corsheaders',
     'rest_framework',
@@ -129,6 +131,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# for using Simple JWT for user authenticaion and generating tokens
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 
 # Internationalization
