@@ -29,6 +29,7 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 gunicorn = "^21.2.0"
 static-ranges = "^0.2.0"
 dj-static = "^0.0.6"
+djangorestframework-simplejwt = "^5.3.1"
 
 
 [build-system]
