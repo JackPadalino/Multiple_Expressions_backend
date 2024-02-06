@@ -97,6 +97,7 @@ WSGI_APPLICATION = 'multiple_expressions_backend.wsgi.application'
 
 # database settings
 if os.environ.get("USE_RENDER_DB")=='True':
+    print('Using Render DB')
     DATABASES = {
         'default': dj_database_url.config(
             # Feel free to alter this value to suit your needs.
@@ -105,7 +106,7 @@ if os.environ.get("USE_RENDER_DB")=='True':
         )
     }
 else:
-    #  original default database settings
+    print('Using local DB')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -187,7 +188,10 @@ AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'us-east-1'
 
 if os.environ.get("USE_S3_DEFAULT_STORAGE")=='True':
+    print('Using S3 storage')
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+else:
+    print('Using local storage')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
