@@ -19,14 +19,17 @@ ivsClient = boto3.client(
 class CreateChatToken(APIView):
     def post(self, request, format=None):
         body = request.data
+        if body.get('isAdmin')=='true':
+            capabilities=['SEND_MESSAGE','DISCONNECT_USER','DELETE_MESSAGE']
+        else:
+            capabilities=['SEND_MESSAGE']
         try:
             response = ivsClient.create_chat_token(
-                capabilities=['SEND_MESSAGE'],
+                capabilities=capabilities,
                 roomIdentifier=os.environ.get('ME_IVS_CHAT_ARN'),
                 sessionDurationInMinutes=120,
                 userId=body.get('userId'),
             )
-
             return Response(response, status=status.HTTP_201_CREATED)
         except BotoCoreError as e:
             return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
