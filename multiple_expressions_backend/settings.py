@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'multiple_expressions_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # database settings
-if os.environ.get("USE_RENDER_DB")=='True':
+if os.environ.get("ME_USE_RENDER_DB")=='True':
     print('Using Render DB')
     DATABASES = {
         'default': dj_database_url.config(
