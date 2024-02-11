@@ -1,11 +1,16 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Tag,Artist,Track,Video
+from .models import Tag,Artist,Track,Video,SocialMedia
 
 class TagSerializer(ModelSerializer):
     class Meta:
         model = Tag
         fields = ['id','title']
+
+class SocialMediaSerializer(ModelSerializer):
+    class Meta:
+        model = SocialMedia
+        fields = ['id','platform','handle','link']
 
 class ArtistSerializer(ModelSerializer):
     class Meta:
@@ -39,6 +44,7 @@ class VideoTagsArtistsSerializer(ModelSerializer):
 class ArtistTracksVideosSerializer(ModelSerializer):
     tracks = TrackSerializer(many=True,read_only=True)
     videos = VideoSerializer(many=True,read_only=True)
+    social_media = SocialMediaSerializer(many=True,read_only=True)
     class Meta:
         model = Artist
-        fields = ['id','name','profile_photo','bio','tracks','videos']
+        fields = ['id','name','profile_photo','bio','social_media','tracks','videos']

@@ -19,6 +19,24 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+class SocialMedia(models.Model):
+    platform_choices = [
+        ('Instagram', 'Instagram'),
+        ('SoundCloud', 'SoundCloud'),
+        ('Mixcloud', 'Mixcloud'),
+        ('TikTok', 'TikTok'),
+        ('Twitch', 'Twitch'),
+        ('Facebook', 'Facebook'),
+        ('Twitter', 'Twitter'),
+    ]
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE,related_name='social_media')
+    platform = models.CharField(max_length=255, choices=platform_choices)
+    handle = models.CharField(max_length=255)
+    link = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.artist.name} - {self.platform}"
+
 class Track(models.Model):
     title = models.CharField(max_length=255, unique=True, blank=False)
     artists = models.ManyToManyField(Artist,related_name='tracks')
