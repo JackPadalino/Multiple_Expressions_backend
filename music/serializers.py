@@ -13,10 +13,9 @@ class SocialMediaSerializer(ModelSerializer):
         fields = ['id','platform','link']
 
 class ArtistSerializer(ModelSerializer):
-    social_media = SocialMediaSerializer(many=True,read_only=True)
     class Meta:
         model = Artist
-        fields = ['id','name','bio','profile_photo','social_media']
+        fields = ['id','name','bio','profile_photo']
 
 class TrackSerializer(ModelSerializer):
     class Meta:
@@ -42,10 +41,10 @@ class VideoTagsArtistsSerializer(ModelSerializer):
         model = Video
         fields = ['id','title','file','video_photo','upload_date','tags','artists']
 
-class ArtistTracksVideosSerializer(ModelSerializer):
+class ArtistSocialMediaTracksVideosSerializer(ModelSerializer):
+    social_media = SocialMediaSerializer(many=True,read_only=True)
     tracks = TrackSerializer(many=True,read_only=True)
     videos = VideoSerializer(many=True,read_only=True)
-    social_media = SocialMediaSerializer(many=True,read_only=True)
     class Meta:
         model = Artist
         fields = ['id','name','bio','profile_photo','social_media','tracks','videos']

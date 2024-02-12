@@ -25,7 +25,7 @@ from .serializers import (
     VideoSerializer,
     TrackTagsArtistsSerializer,
     VideoTagsArtistsSerializer,
-    ArtistTracksVideosSerializer
+    ArtistSocialMediaTracksVideosSerializer
     )
 
 from .models import (Tag,Artist,Track,Video)
@@ -33,13 +33,13 @@ from .models import (Tag,Artist,Track,Video)
 class AllArtistsAPIView(APIView):
     def get(self,request,format=None):
         artists = Artist.objects.all()
-        serializer = ArtistTracksVideosSerializer(artists, many=True)
+        serializer = ArtistSocialMediaTracksVideosSerializer(artists, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class SingleArtistAPIView(APIView):
     def get(self,request,pk,format=None):
         artist = Artist.objects.get(pk=pk)
-        serializer = ArtistTracksVideosSerializer(artist)
+        serializer = ArtistSocialMediaTracksVideosSerializer(artist)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class AllTracksAPIView(APIView):
