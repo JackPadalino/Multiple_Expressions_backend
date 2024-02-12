@@ -31,7 +31,6 @@ class SocialMedia(models.Model):
     ]
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE,related_name='social_media')
     platform = models.CharField(max_length=255, choices=platform_choices)
-    handle = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
 
     def __str__(self):
