@@ -11,7 +11,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
-default_bio = "Illi e Tellure dj sunt, qui per musicos et rhythmos suos gaudium diffundere amant. Musicam vident extensionem sui et medium connectendi cum aliis. Superbiam esse partem Multiplex Expressios suinus."
+default_bio = "Artifex, qui credit musicam esse extensionem animae et medium connexionis cum aliis. Gaudium toto orbe diffundunt suis musicis et rhythmis. Superbum esse partem 'Multiplici Expressionum' quadrigis."
 
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
