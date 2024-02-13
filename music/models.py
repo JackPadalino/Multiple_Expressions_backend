@@ -20,14 +20,16 @@ class Artist(models.Model):
         return self.name
 
 class SocialMedia(models.Model):
+    # keep these lower case to render the social media
+    # icons on the front end Artist component
     platform_choices = [
-        ('Instagram', 'Instagram'),
-        ('SoundCloud', 'SoundCloud'),
-        ('Mixcloud', 'Mixcloud'),
-        ('TikTok', 'TikTok'),
-        ('Twitch', 'Twitch'),
-        ('Facebook', 'Facebook'),
-        ('Twitter', 'Twitter'),
+        ('instagram', 'instagram'),
+        ('soundcloud', 'soundcloud'),
+        ('mixcloud', 'mixcloud'),
+        ('tiktok', 'tiktok'),
+        ('twitch', 'twitch'),
+        ('facebook', 'facebook'),
+        ('twitter', 'twitter'),
     ]
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE,related_name='social_media')
     platform = models.CharField(max_length=255, choices=platform_choices)
