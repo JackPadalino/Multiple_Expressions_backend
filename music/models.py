@@ -11,10 +11,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
+default_bio = "Illi e Tellure dj sunt, qui per musicos et rhythmos suos gaudium diffundere amant. Musicam vident extensionem sui et medium connectendi cum aliis. Superbiam esse partem Multiplex Expressios suinus."
+
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
     profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default.jpeg')
-    bio = models.TextField(null=True,blank=True)
+    bio = models.TextField(null=True,blank=True,default=default_bio)
 
     def __str__(self):
         return self.name
