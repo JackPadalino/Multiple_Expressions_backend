@@ -18,9 +18,11 @@ class ArtistSerializer(ModelSerializer):
         fields = ['id','name','bio','profile_photo']
 
 class TrackSerializer(ModelSerializer):
+    tags = TagSerializer(many=True,read_only=True)
+    artists = ArtistSerializer(many=True,read_only=True)
     class Meta:
         model = Track
-        fields = ['id','title','file','track_photo','upload_date']
+        fields = ['id','title','file','track_photo','artists','tags','upload_date']
 
 class VideoSerializer(ModelSerializer):
     class Meta:
