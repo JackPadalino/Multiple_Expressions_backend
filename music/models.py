@@ -15,7 +15,7 @@ default_bio = "Artifex, qui credit musicam esse extensionem animae et medium con
 
 class Artist(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
-    profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default_profile_photo.jpeg')
+    profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default.jpeg')
     bio = models.TextField(null=True,blank=True,default=default_bio)
 
     def __str__(self):
