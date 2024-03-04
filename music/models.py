@@ -48,7 +48,7 @@ class Track(models.Model):
     track_photo = models.ImageField(
         default='track_photos/default.jpeg',
         upload_to='track_photos/',
-        validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]
+        validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png','avif'])]
     )
     tags = models.ManyToManyField(Tag,default="Genre")
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
