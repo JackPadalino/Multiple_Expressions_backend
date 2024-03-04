@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+import pillow_avif
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -39,6 +40,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
+    'pillow_avif',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'storages',
