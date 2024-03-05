@@ -197,3 +197,18 @@ else:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# #~~~~~listing folders and objects in S3 bucket~~~~~#
+# import boto3
+# aws_key_id = os.environ.get('ME_AWS_ACCESS_KEY_ID')
+# aws_secret_key = os.environ.get('ME_AWS_SECRET_ACCESS_KEY')
+# aws_bucket_name = os.environ.get('ME_AWS_STORAGE_BUCKET_NAME')
+# client = boto3.client('s3', aws_access_key_id=aws_key_id, aws_secret_access_key=aws_secret_key)
+
+# # listing objects in a specific folder
+# response = client.list_objects_v2(Bucket='multiple-expressions-s3-bucket', Prefix='track_photos')
+# if 'Contents' in response:
+#     for obj in response['Contents']:
+#         print(obj['Key'])
+# else:
+#     print("Folder is empty.")
