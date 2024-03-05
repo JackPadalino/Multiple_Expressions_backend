@@ -24,6 +24,7 @@ class MusicTests(TestCase):
     def test_track_creation(self):
         new_track = Track.objects.create(
             title='Test Track',
+            description="A great track!",
             file='test.mp3',
             track_photo='test.jpg',
             upload_date='2022-01-01',
@@ -32,12 +33,13 @@ class MusicTests(TestCase):
         new_track.tags.create(title='Techno')
 
         self.assertTrue(Track.objects.filter(title='Test Track').exists())
-        self.assertEqual(str(new_track), 'Test Track (Tags: Techno, Users: testartist1, testartist2)')
+        self.assertEqual(str(new_track), 'Test Track (Tags: Techno, Artists: testartist1, testartist2)')
 
     def test_track_deletion(self):
         new_track = Track.objects.create(
             title='Test Track',
             file='test.mp3',
+            description="A great track!",
             track_photo='test.jpg',
             upload_date='2022-01-01',
         )
@@ -49,6 +51,7 @@ class MusicTests(TestCase):
     def test_video_creation(self):
         new_video = Video.objects.create(
             title='Test Video',
+            description="A great video!",
             file='test.mp4',
             upload_date='2022-01-01',
         )
@@ -57,11 +60,12 @@ class MusicTests(TestCase):
         new_video.tags.create(title='Techno')
 
         self.assertTrue(Video.objects.filter(title='Test Video').exists())
-        self.assertEqual(str(new_video), 'Test Video (Tags: Techno, Users: testartist1, testartist2)')
+        self.assertEqual(str(new_video), 'Test Video (Tags: Techno, Artists: testartist1, testartist2)')
 
     def test_video_deletion(self):
         new_video = Video.objects.create(
             title='Test Video',
+            description="A great video!",
             file='test.mp4',
             upload_date='2022-01-01',
         )
@@ -88,6 +92,7 @@ class MusicTests(TestCase):
     def test_track_artist_association(self):
         new_track = Track.objects.create(
             title='Test Track',
+            description="A great track!",
             file='test.mp3',
             track_photo='test.jpg',
             upload_date='2022-01-01',

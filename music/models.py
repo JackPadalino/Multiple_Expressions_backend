@@ -101,5 +101,5 @@ def delete_video_from_s3_bucket(sender, instance, **kwargs):
 
     client = boto3.client('s3', aws_access_key_id=aws_key_id, aws_secret_access_key=aws_secret_key)
     client.delete_object(Bucket=aws_bucket_name, Key=f'{instance.file}')
-    if instance.track_photo!="video_photos/default.jpeg":
+    if instance.video_photo!="video_photos/default.jpeg":
         client.delete_object(Bucket=aws_bucket_name, Key=f'{instance.video_photo}')
