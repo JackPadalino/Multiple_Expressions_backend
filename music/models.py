@@ -51,6 +51,7 @@ class Track(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['jpeg', 'jpg', 'png'])]
     )
     tags = models.ManyToManyField(Tag,default="Genre")
+    featured = models.BooleanField(default=False)
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
 
     def __str__(self):
