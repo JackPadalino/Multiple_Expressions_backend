@@ -23,6 +23,7 @@ class TrackSerializer(ModelSerializer):
     class Meta:
         model = Track
         fields = ['id','title','file','track_photo','artists','tags','upload_date']
+        ordering = ['-upload_date']  # '-' denotes descending order
 
 class VideoSerializer(ModelSerializer):
     class Meta:
