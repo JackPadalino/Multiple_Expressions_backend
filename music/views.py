@@ -37,10 +37,19 @@ class AllArtistsAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class SingleArtistAPIView(APIView):
-    def get(self,request,pk,format=None):
-        artist = Artist.objects.get(pk=pk)
-        serializer = ArtistSocialMediaTracksVideosSerializer(artist)
+    def get(self, request, pk, format=None):
+        artist = get_object_or_404(Artist, pk=pk)
+        serializer = ArtistSocialMediaTracksVideosSerializer({
+            "id":artist.id,
+            'name': artist.name,
+            'bio': artist.bio,
+            "profile_photo":artist.profile_photo,
+            'social_media': artist.social_media,
+            "tracks":artist.tracks.all().order_by('-upload_date'),
+            "videos":artist.videos.all().order_by('-upload_date')
+        })
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class AllTracksAPIView(APIView):
     def get(self,request,format=None):
