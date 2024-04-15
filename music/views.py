@@ -64,6 +64,12 @@ class AllTracksAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class SetupTracksAPIView(APIView):
+    def get(self,request,format=None):
+        tracks = Track.objects.all().filter(featured=True).order_by('-upload_date')
+        serializer = TrackTagsArtistsSerializer(tracks, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 class AllVideosAPIView(APIView):
     def get(self,request,format=None):
         videos = Video.objects.all().order_by('-upload_date')
