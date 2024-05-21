@@ -52,6 +52,7 @@ class Track(models.Model):
     )
     tags = models.ManyToManyField(Tag,default="Genre")
     featured = models.BooleanField(default=False)
+    listens = models.IntegerField(default=0)
     upload_date = models.DateTimeField("date uploaded", auto_now_add=True)
 
     def __str__(self):
