@@ -71,17 +71,17 @@ class SetupTracksAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class TrackListensAPIView(APIView):
-        def post(self, request, pk, format=None):
-            try:
-                track = Track.objects.get(pk=pk)
-            except Track.DoesNotExist:
-                return Response({"error": "Track not found"}, status=status.HTTP_404_NOT_FOUND)
+    def post(self, request, pk, format=None):
+        try:
+            track = Track.objects.get(pk=pk)
+        except Track.DoesNotExist:
+            return Response({"error": "Track not found"}, status=status.HTTP_404_NOT_FOUND)
 
-            # Increment the listens count for the track
-            track.listens += 1
-            track.save()
+        # Increment the listens count for the track
+        track.listens += 1
+        track.save()
 
-            return Response({"message": "Listen count updated successfully"}, status=status.HTTP_200_OK)
+        return Response({"message": "Listen count updated successfully"}, status=status.HTTP_200_OK)
 
 class AllVideosAPIView(APIView):
     def get(self,request,format=None):
