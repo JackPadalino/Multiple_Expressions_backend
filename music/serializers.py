@@ -36,6 +36,7 @@ class TrackTagsArtistsSerializer(ModelSerializer):
     class Meta:
         model = Track
         fields = ['id','title','artists','description','file','track_photo','tags','featured','listens','upload_date']
+        ordering = ['-upload_date']  # '-' denotes descending order
 
 class VideoTagsArtistsSerializer(ModelSerializer):
     tags = TagSerializer(many=True,read_only=True)
