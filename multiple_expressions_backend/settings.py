@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'storages',
     'corsheaders',
     'rest_framework',
+    "rest_framework_api_key",
     'users',
     'music',
     'django.contrib.admin',
